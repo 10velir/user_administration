@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="col-md-12">
+    <div class="container text-center col-sm-4">
+        <form class="form-group" th:action="@{/user/search}" method="post">
+            <br/>
+            <label> User Name </label>
+            <input class="form-control" type="text" id="supplier" name="userName" maxlength="30" placeholder="ivan"/>
+            <br>
+            <label> Role </label>
+            <input class="form-control" type="text" id="model" name="role" maxlength="30" placeholder="user"/>
+            <br/>
+            <br/> <br/>
+            <div class="col-sm-2"></div>
+            <input type="submit" class="btn btn-success col-md-4" value="Search"/>
+        </form>
+        <form class="form-group" th:action="@{/user}" method="get">
+            <input type="submit" class="btn btn-primary col-md-4" value="Reset"/>
+        </form>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+    <div class="col-md-8">
+        <h1 class="h3 mb-3 font-weight-normal" align="center">Users list: </h1>
+        <table class="table table-hover table-dark">
+            <thead class="">
+            <tr>
+                <th class="col-md-2">User Name</th>
+                <th class="col-md-2">First Name</th>
+                <th class="col-md-2">Last Name</th>
+                <th class="col-md-2">Role</th>
+                <th class="col-md-2">Status</th>
+                <th class="col-md-2">Created At</th>
+            </tr>
+            <thead>
+            <tbody>
+            <div th:each="user : *{users}">
+                <tr>
+                    <td th:text="${user.getUsername()}" class="col-md-2">User name</td>
+                    <td th:text="${user.getFirstName()}" class=" col-md-2">First Name</td>
+                    <td th:text="${user.getLastName()}" class="col-md-2">Last Name</td>
+                    <td th:text="${user.getRole()}" class="col-md-2">Role</td>
+                    <td th:text="${user.getStatus()}" class="col-md-2">Status</td>
+                    <td th:text="${user.getCreatedAt()}" class="col-md-2">Created at</td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+        <form th:action="@{/api/car}" method="get">
+            <button th:if="${users.hasPrevious()}"
+                    class="btn btn-primary"
+                    type="submit" th:text="${previousPage}"
+                    name="nextPage"
+                    th:value="${previousPage}"></button>
+            <button type="submit" class="btn btn-primary" th:text="${users.getNumber()}" disabled></button>
+            <button th:if="${users.hasNext()}"
+                    type="submit"
+                    class="btn btn-primary"
+                    th:text="${nextPage}"
+                    name="nextPage"
+                    th:value="${nextPage}"></button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+

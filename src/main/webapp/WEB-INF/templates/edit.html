@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="row">
+    <div class="container text-center col-sm-5">
+        <form class="form-group" th:action="@{/user/save}" method="post">
+            <br/>
+            <label/> User Name: </label>
+            <input class="form-control" type="text" id="usernameQ" name="usernameQ" maxlength="30"
+                   placeholder="username"/>
+            <br>
+            <label/> Password: </label>
+            <input class="form-control" type="password" id="password" name="passwordQ" maxlength="30"
+                   placeholder="password"/>
+            <br/>
+            <label/> First Name: </label>
+            <input class="form-control" type="text" id="firstName" name="firstNameQ" maxlength="30"
+                   placeholder="first mame"/>
+            <br/>
+            <label/> Last Name: </label>
+            <input class="form-control" type="text" id="lastName" name="lastNameQ" maxlength="30"
+                   placeholder="last name"/>
+            <br/>
+            <input type="radio" name="statusQ" value="ACTIVE" checked> ACTIVE<Br>
+            <input type="radio" name="statusQ" value="INACTIVE"> INACTIVE<Br>
+            <br/> <br/>
+            <div class="col-sm-4"></div>
+            <input type="submit" class="btn btn-success col-md-4" value="Save"/>
+        </form>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+    <div class="col-md-7">
+        <h1 class="bg-primary" align="center"> Current user: </h1>
+        <h3 class="bg-info">User Name: <span class="" th:text="${currentUser.getUsername()}"> User Name </span>
+        </h3>
+        <h3 class="bg-info">First Name: <span th:text="${currentUser.getFirstName()}"> First Name </span>
+        </h3>
+        <h3 class="bg-info">Last Name: <span class="" th:text="${currentUser.getLastName()}"> Last Name </span>
+        </h3>
+        <h3 class="bg-info">Role: <span class="" th:text="${currentUser.getRole()}"> Role </span>
+        </h3>
+        <h3 class="bg-info">Status: <span class="" th:text="${currentUser.getStatus()}"> Status </span>
+        </h3>
+        <h3 class="bg-info">Created At: <span class="" th:text="${currentUser.getCreatedAt()}"> Created At </span>
+        </h3>
+        <br/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">This button do nothing</button>
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-3">
+        <form class="form-signin" th:action="@{/user/new}" th:method="post">
+            <h1 class="h2 mb-3 font-weight-normal">Please enter information</h1>
+            <label for="username">User name: </label><input class="form-control colortext" type="text" id="username"
+                                                            name="usernameQ"
+                                                            maxlength="30" placeholder="username" required
+                                                            autofocus/>
+            <label for="password"> Password: </label><input class="form-control colortext" type="password" id="password"
+                                                            name="passwordQ"
+                                                            maxlength="30" placeholder="Password" required/>
+            <label for="firstNameQ"> First Name: </label><input class="form-control colortext" type="text" id="firstNameQ"
+                                                               name="firstNameQ"
+                                                               maxlength="30" placeholder="first name"/>
+            <label for="lastNameQ"> Last Name: </label><input class="form-control colortext" type="text" id="lastNameQ"
+                                                             name="lastNameQ"
+                                                             maxlength="30" placeholder="last name"/>
+            <br/>
+            <div>
+                <label> ROLE:
+                    <select name="roleQ">
+                        <option th:each="role: *{allRoles}"
+                                th:text="${role}"
+                                th:value="${role}">Role
+                        </option>
+                        <option th:value="ADMIN">Admin</option>
+                        <option th:value="USER">User</option>
+                    </select>
+                </label>
+            </div>
+            <br/>
+            <br/>
+            <button class="btn btn-lg btn-primary btn-block colorbutton" type="submit">Create</button>
+        </form>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+</body>
+</html>
